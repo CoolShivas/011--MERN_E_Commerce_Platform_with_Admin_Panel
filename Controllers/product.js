@@ -34,3 +34,26 @@ export const addProductFunc = async (req, res) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of Get All Products function;
+
+export const getAllProductFunc = async (req, res) => {
+  try {
+    let getAllProducts = await Product.find().sort({ createdAt: -1 });
+
+    console.log("Fetch all the products successfully..!", getAllProducts);
+    res.json({
+      message: "Fetch all the products successfully..!",
+      success: true,
+      data: getAllProducts,
+    });
+  } catch (error) {
+    console.log("Error occurs in get all product => ", error.message);
+    res.json({ message: error.message, success: false });
+  }
+};
+
+// // // Ending of Get All Products function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
