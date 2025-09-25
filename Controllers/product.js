@@ -57,3 +57,32 @@ export const getAllProductFunc = async (req, res) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of Get Product By ID function;
+
+export const getProductByIdFunc = async (req, res) => {
+  const id = req.params.id;
+  try {
+    let getProById = await Product.findById(id);
+
+    if (!getProById) {
+      console.log("Invalid Id to get product");
+      return res.json({ message: "Invalid Id", success: false });
+    }
+
+    console.log("Fetch specific product successfully..!", getProById);
+    res.json({
+      message: "Fetch specific product successfully..!",
+      success: true,
+      data: getProById,
+    });
+  } catch (error) {
+    console.log("Error occurs in get product by id => ", error.message);
+    res.json({ message: error.message, success: false });
+  }
+};
+
+// // // Ending of Get Product By ID function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
