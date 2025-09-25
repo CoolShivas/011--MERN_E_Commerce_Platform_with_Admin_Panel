@@ -1,7 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
+import userRouter from "./Routes/user.js";
 
 const server = express();
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of middleware use method to connect with User Routes endpoint;
+
+server.use("/api/user", userRouter);
+
+// // // Ending of middleware use method to connect with User Routes endpoint;
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
