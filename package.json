@@ -1,0 +1,25 @@
+{
+  "name": "011--mern_e_commerce_platform_with_admin_panel",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoolShivas/011--MERN_E_Commerce_Platform.git"
+  },
+  "keywords": [],
+  "author": "shivaji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoolShivas/011--MERN_E_Commerce_Platform/issues"
+  },
+  "homepage": "https://github.com/CoolShivas/011--MERN_E_Commerce_Platform#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
