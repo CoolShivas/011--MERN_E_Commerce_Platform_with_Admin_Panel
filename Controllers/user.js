@@ -101,3 +101,26 @@ export const userLoginFunc = async (request, response) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of getting All User function;
+
+export const getAllUserFunc = async (request, response) => {
+  try {
+    // const getUsers = await User.find(); // Finding and getting all users;
+    const getUsers = await User.find().sort({ createdAt: -1 }); // Finding and getting all latest users;
+    console.log("Fetching all the users successfully => ", getUsers);
+    response.json({
+      message: "Fetching all the users successfully...!",
+      success: true,
+      data: getUsers,
+    });
+  } catch (error) {
+    console.log("Error occurs in get all user => ", error.message);
+    response.json({ message: error.message, success: false });
+  }
+};
+
+// // // Ending of getting All User function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
