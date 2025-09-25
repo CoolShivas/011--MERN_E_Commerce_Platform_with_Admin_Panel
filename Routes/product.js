@@ -3,6 +3,7 @@ import {
   addProductFunc,
   getAllProductFunc,
   getProductByIdFunc,
+  updateProductByIdFunc,
 } from "../Controllers/product.js";
 
 const router = express.Router();
@@ -18,5 +19,9 @@ router.get("/allproduct", getAllProductFunc);
 // // // @api method :- get
 // // // @api endPoint :- /api/product/:id
 router.get("/:id", getProductByIdFunc);
+// // // @api description :- updating specific product by id
+// // // @api method :- put
+// // // @api endPoint :- /api/product/:id
+router.put("/:id", updateProductByIdFunc);
 
 export default router;

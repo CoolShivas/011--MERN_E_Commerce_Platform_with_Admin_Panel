@@ -86,3 +86,34 @@ export const getProductByIdFunc = async (req, res) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of Update Product By ID function;
+
+export const updateProductByIdFunc = async (req, res) => {
+  const id = req.params.id;
+  try {
+    let updateProById = await Product.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    if (!updateProById) {
+      console.log("Invalid Id to update product");
+      return res.json({ message: "Invalid Id", success: false });
+    }
+
+    console.log("Specific product updated successfully..!", updateProById);
+    res.json({
+      message: "Specific product updated successfully..!",
+      success: true,
+      data: updateProById,
+    });
+  } catch (error) {
+    console.log("Error occurs in update product by id => ", error.message);
+    res.json({ message: error.message, success: false });
+  }
+};
+
+// // // Ending of Update Product By ID function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
