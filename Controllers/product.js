@@ -117,3 +117,31 @@ export const updateProductByIdFunc = async (req, res) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of Delete Product By ID function;
+
+export const deleteProductByIdFunc = async (req, res) => {
+  const id = req.params.id;
+  try {
+    let deleterProById = await Product.findByIdAndDelete(id);
+
+    if (!deleterProById) {
+      console.log("Invalid Id to delete product");
+      return res.json({ message: "Invalid Id", success: false });
+    }
+
+    console.log("Specific product deleted successfully..!");
+    res.json({
+      message: "Specific product deleted successfully..!",
+      success: true,
+    });
+  } catch (error) {
+    console.log("Error occurs in delete product by id => ", error.message);
+    res.json({ message: error.message, success: false });
+  }
+};
+
+// // // Ending of Delete Product By ID function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
