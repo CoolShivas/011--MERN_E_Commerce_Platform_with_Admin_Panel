@@ -16,7 +16,17 @@ export const userRegisterFunc = async (request, response) => {
     });
   }
 
-  let createUser = await User.create({ name, email, password });
+  let createUser = await User.findOne({ email });
+
+  if (createUser) {
+    console.log("User already register. Please, Login...!");
+    return response.json({
+      message: "User already register. Please, Login...!",
+      success: false,
+    });
+  }
+
+  createUser = await User.create({ name, email, password });
 
   // // // Open the POSTMAN and enter URL as (http://localhost:8000/api/user/register) fill the body data and hit send btn. You will get the result both on Terminal and POSTMAN;
   console.log("User Sign-Up successfully. => ", createUser); // Getting data;
