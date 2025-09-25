@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./Routes/user.js";
 import bodyParser from "body-parser";
+import productRouter from "./Routes/product.js";
 
 const server = express();
 
@@ -12,6 +13,7 @@ server.use(bodyParser.json());
 // // // Starting of middleware use method to connect with User Routes endpoint;
 
 server.use("/api/user", userRouter);
+server.use("/api/product", productRouter);
 
 // // // Ending of middleware use method to connect with User Routes endpoint;
 
