@@ -3,59 +3,32 @@ import { User } from "../Models/User.js";
 ///////***********************************************************************///////
 ///////***********************************************************************///////
 
-// // // Starting of connection MongoDB to ExpressJS through Mongoose;
+// // // Starting of User Registeration or Sign-Up function;
 
 export const userRegisterFunc = async (request, response) => {
-  console.log("Printing the body => ", request.body);
-  /**
-   * Restarting 'app.js'
-Server is running at Port :-) 8000
-MongoDB Connected Successfully...!
-Printing the body =>  undefined
-   */
-  // // // After using bodyParse.json. We are getting the data instead of undefined
-  /**
-   * Restarting 'app.js'
-Server is running at Port :-) 8000
-MongoDB Connected Successfully...!
-Printing the body =>  { name: 'arjun', email: 'arjun@gmail.com', password: '123' }
-   */
+  const { name, email, password } = request.body;
+
+  if (name === "" || email === "" || password === "") {
+    console.log("Please fill all the fields...!");
+    return response.json({
+      message: "Please fill all the fields...!",
+      success: false,
+    });
+  }
+
+  let createUser = await User.create({ name, email, password });
+
+  // // // Open the POSTMAN and enter URL as (http://localhost:8000/api/user/register) fill the body data and hit send btn. You will get the result both on Terminal and POSTMAN;
+  console.log("User Sign-Up successfully. => ", createUser); // Getting data;
+
   response.json({
-    message: "Posting user data",
+    message: "User Sign-Up successfully....!",
     success: true,
-    data: request.body,
-  });
-  // // // Open the POSTMAN and select the POST request then enter the URL as (http://localhost:8000/api/user/register) then enter data on the body tag as :-
-  /**
-   * {
-    "name":"arjun",
-    "email":"arjun@gmail.com",
-    "password":"123"
-}
-   */
-  // // // Then hit the send button to get the response as :-
-  /**
-   * {
-    "message": "Posting user data",
-    "success": true
-}
-   */
-  // // // Therefore, we are getting the responses on both Terminal and POSTMAN after connected with the server file in app.js;
-  // // // After using bodyParse.json. We are not getting the  (data: request.body,) now getting it;
-  /**
-   * {
-    "message": "Posting user data",
-    "success": true,
-    "data": {
-        "name": "arjun",
-        "email": "arjun@gmail.com",
-        "password": "123"
-    }
-}
-   */
+    data: createUser,
+  }); // Getting data;
 };
 
-// // // Starting of connection MongoDB to ExpressJS through Mongoose;
+// // // Ending of User Registeration or Sign-Up function;
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
