@@ -50,3 +50,54 @@ export const userRegisterFunc = async (request, response) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of User Login function;
+
+export const userLoginFunc = async (request, response) => {
+  const { email, password } = request.body;
+
+  try {
+    if (email === "" || password === "") {
+      console.log("Please fill all the fields...!");
+      return response.json({
+        message: "Please fill all the fields...!",
+        success: false,
+      });
+    }
+
+    let loginUser = await User.findOne({ email });
+
+    if (!loginUser) {
+      console.log("User not exists...Please, SignUp.!");
+      return response.json({
+        message: "User not exists...Please, SignUp.!",
+        success: false,
+      });
+    }
+
+    const unHashPassWord = await bcrypt.compare(password, loginUser.password);
+
+    if (!unHashPassWord) {
+      console.log("Invalid Login Password");
+      return response.json({
+        message: "Invalid Login Password",
+        success: false,
+      });
+    }
+    // // // Open the POSTMAN and enter URL as (http://localhost:8000/api/user/login) fill the body data and hit send btn. You will get the result both on Terminal and POSTMAN;
+    console.log(`Welcome back ${loginUser.name}`, loginUser); // Getting data;
+    response.json({
+      message: `Welcome back ${loginUser.name}`,
+      success: true,
+      data: loginUser,
+    }); // Getting data;
+  } catch (error) {
+    console.log("Error occur in login => ", error.message);
+    response.json({ message: error.message, success: false });
+  }
+};
+
+// // // Ending of User Login function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
