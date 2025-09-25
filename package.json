@@ -20,6 +20,7 @@
   "homepage": "https://github.com/CoolShivas/011--MERN_E_Commerce_Platform#readme",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "express": "^5.1.0",
     "mongoose": "^8.18.2"
   }

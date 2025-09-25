@@ -1,4 +1,5 @@
 import { User } from "../Models/User.js";
+import bcrypt from "bcryptjs";
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
@@ -26,7 +27,9 @@ export const userRegisterFunc = async (request, response) => {
     });
   }
 
-  createUser = await User.create({ name, email, password });
+  const hashPassWord = await bcrypt.hash(password, 10);
+
+  createUser = await User.create({ name, email, password: hashPassWord });
 
   // // // Open the POSTMAN and enter URL as (http://localhost:8000/api/user/register) fill the body data and hit send btn. You will get the result both on Terminal and POSTMAN;
   console.log("User Sign-Up successfully. => ", createUser); // Getting data;
