@@ -98,7 +98,7 @@ export const deductToCartProductQty = async (req, res) => {
   // // // Saving the specific user's cart on the database;
   await decreaseUserCart.save();
 
-  // // // Open the POSTMAN and select the POST request then enter the URL as (http://localhost:8000/api/cart/addcart) then fill the data on the body then hit the send btn. You will get the response both on POSTMAN and Terminal;
+  // // // Open the POSTMAN and select the DELETE request then enter the URL as (http://localhost:8000/api/cart/dedcart) then fill the data on the body then hit the send btn. You will get the response both on POSTMAN and Terminal;
   console.log(
     "Item deducted from the user cart successfully..! => ",
     decreaseUserCart
@@ -111,6 +111,31 @@ export const deductToCartProductQty = async (req, res) => {
 };
 
 // // // Ending of Deduct Product to particular User's Cart function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of Getting the products of specific user's cart;
+
+export const getUserCartProduct = async (req, res) => {
+  // // // Giving the hard coded user id to add the items in specific user cart;
+  let userId = "68d50b0461b0791ae03d8e2c";
+
+  let cart = await Cart.findOne({ userId });
+
+  if (!cart) {
+    console.log("User cart not found");
+    return res.json({ message: "User cart not found", success: false });
+  }
+  // // // Open the POSTMAN and select the GET request then enter the URL as (http://localhost:8000/api/cart/usercart) then hit the send btn. You will get the response both on POSTMAN and Terminal;
+  console.log("Fetching specific user cart successfully...!", cart); // // Getting decrease data;
+  res.json({
+    message: "Fetching specific user cart successfully...!",
+    success: true,
+    cart,
+  }); // // Getting decrease data;
+};
+// // // Ending of Getting the products of specific user's cart;
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
