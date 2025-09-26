@@ -162,15 +162,40 @@ export const removeProdFromCartById = async (req, res) => {
 
   // // // Saving the specific user's cart on the database;
   await cart.save();
-
-  console.log("Product has been removed from cart successfully...!");
+  // // // Open the POSTMAN and select the GET request then enter the URL as (http://localhost:8000/api/cart/removecart/68d632bf03bf4115833b5ffa) then hit the send btn. You will get the response both on POSTMAN and Terminal;
+  console.log("Product has been removed from cart successfully...!"); // // Getting data;
   res.json({
     message: "Product has been removed from cart successfully...!",
     success: true,
-  });
+  }); // // Getting data;
 };
 
 // // // Ending of Removing the product from cart of specific user;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of Making the User Cart Empty;
+
+export const makingUserCartEmpty = async (req, res) => {
+  // // // Giving the hard coded user id to add the items in specific user cart;
+  let userId = "68d50b0461b0791ae03d8e2c";
+
+  let cart = await Cart.findOne({ userId });
+
+  if (!cart) {
+    cart = new Cart({ items: [] });
+  } else {
+    cart.items = [];
+  }
+  // // // Saving the specific user's cart on the database;
+  await cart.save();
+  // // // Open the POSTMAN and select the GET request then enter the URL as (http://localhost:8000/api/cart/emptycart) then hit the send btn. You will get the response both on POSTMAN and Terminal;
+  console.log("Cart is empty successfully....!"); // // Getting data;
+  res.json({ message: "Cart is empty successfully....!", success: true }); // // Getting data;
+};
+
+// // // Ending of Making the User Cart Empty;
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////

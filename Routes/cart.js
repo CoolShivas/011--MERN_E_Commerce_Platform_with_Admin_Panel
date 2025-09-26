@@ -3,6 +3,7 @@ import {
   addToCartProduct,
   deductToCartProductQty,
   getUserCartProduct,
+  makingUserCartEmpty,
   removeProdFromCartById,
 } from "../Controllers/cart.js";
 
@@ -23,5 +24,9 @@ router.get("/usercart", getUserCartProduct);
 // // // @api method :- delete
 // // // @api endPoint :- /api/cart/removecart/:id
 router.delete("/removecart/:idOfProduct", removeProdFromCartById);
+// // // @api description :- clearing all the products of specific user's cart;
+// // // @api method :- delete
+// // // @api endPoint :- /api/cart/empty
+router.delete("/emptycart", makingUserCartEmpty);
 
 export default router;
