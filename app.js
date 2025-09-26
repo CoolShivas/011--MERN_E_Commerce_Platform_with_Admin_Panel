@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import userRouter from "./Routes/user.js";
 import bodyParser from "body-parser";
 import productRouter from "./Routes/product.js";
+import cartRouter from "./Routes/cart.js";
 
 const server = express();
 
@@ -14,6 +15,7 @@ server.use(bodyParser.json());
 
 server.use("/api/user", userRouter);
 server.use("/api/product", productRouter);
+server.use("/api/cart", cartRouter);
 
 // // // Ending of middleware use method to connect with User Routes endpoint;
 
