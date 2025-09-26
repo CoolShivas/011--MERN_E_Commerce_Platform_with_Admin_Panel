@@ -139,3 +139,38 @@ export const getUserCartProduct = async (req, res) => {
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
+
+// // // Starting of Removing the product from cart of specific user;
+
+export const removeProdFromCartById = async (req, res) => {
+  // // // Getting the productId from the URL that the user going to paste in the POSTMAN;
+  const productId = req.params.idOfProduct;
+  // // // Giving the hard coded user id to add the items in specific user cart;
+  let userId = "68d50b0461b0791ae03d8e2c";
+
+  let cart = await Cart.findOne({ userId });
+
+  if (!cart) {
+    console.log("Cart not found");
+    return res.json({ message: "Cart not found", success: false });
+  }
+
+  // // // Filtering out the unmatch product which doesn't match the user's provided productId. If match then ignore that product showing rest of the products in the cart;
+  cart.items = cart.items.filter((curItems) => {
+    return curItems.productId.toString() !== productId;
+  });
+
+  // // // Saving the specific user's cart on the database;
+  await cart.save();
+
+  console.log("Product has been removed from cart successfully...!");
+  res.json({
+    message: "Product has been removed from cart successfully...!",
+    success: true,
+  });
+};
+
+// // // Ending of Removing the product from cart of specific user;
+
+///////***********************************************************************///////
+///////***********************************************************************///////

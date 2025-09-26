@@ -3,6 +3,7 @@ import {
   addToCartProduct,
   deductToCartProductQty,
   getUserCartProduct,
+  removeProdFromCartById,
 } from "../Controllers/cart.js";
 
 const router = express.Router();
@@ -18,5 +19,9 @@ router.delete("/dedcart", deductToCartProductQty);
 // // // @api method :- get
 // // // @api endPoint :- /api/cart/usercart
 router.get("/usercart", getUserCartProduct);
+// // // @api description :- removing the products of specific user's cart;
+// // // @api method :- delete
+// // // @api endPoint :- /api/cart/removecart/:id
+router.delete("/removecart/:idOfProduct", removeProdFromCartById);
 
 export default router;
