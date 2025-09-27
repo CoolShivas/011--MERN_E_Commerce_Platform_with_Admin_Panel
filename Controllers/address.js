@@ -40,7 +40,7 @@ export const addShippingAddress = async (req, res) => {
     phoneNumber,
   });
 
-  // // // Open the POSTMAN and select the POST request then enter the URL as (http://localhost:8000/api/shipping/addship) then fill the data on the body then hit the send btn. You will get the response both on POSTMAN and Terminal;
+  // // // Open the POSTMAN and select the POST request then enter the URL as (http://localhost:8000/api/shipping/addship) then fill the data on the body then header with key and value then hit the send btn. You will get the response both on POSTMAN and Terminal;
   console.log("Shipping address saved successfully...!", userShipAddress); // // Getting data;
   res.json({
     message: "Shipping address saved successfully...!",
@@ -62,7 +62,7 @@ export const getUserShippingAddress = async (req, res) => {
   let getUserAddress = await Address.find({ userId }).sort({ createdAt: -1 });
   // // // Using sort method with createdAt (.sort({ createdAt: -1 })) to get the recent added shipping address of a user;
 
-  // // // Open the POSTMAN and select the GET request then enter the URL as (http://localhost:8000/api/shipping/getship) then hit the send btn. You will get the response both on POSTMAN and Terminal;
+  // // // Open the POSTMAN and select the GET request then enter the URL as (http://localhost:8000/api/shipping/getship) then header with key and value then hit the send btn. You will get the response both on POSTMAN and Terminal;
   console.log("Fetching specific user address", getUserAddress[0]); // // Getting data;
   res.json({
     message: "Fetching specific user address",
