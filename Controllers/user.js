@@ -87,7 +87,7 @@ export const userLoginFunc = async (request, response) => {
     }
 
     // // // Providing the login user a token by which we can identify by saving all the details on this token;
-    const token = jwt.sign({ userId: loginUser._id }, "!@#$%^&", {
+    const token = jwt.sign({ userId: loginUser._id }, process.env.JWT, {
       expiresIn: "365d",
     });
 

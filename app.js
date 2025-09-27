@@ -4,10 +4,12 @@ import userRouter from "./Routes/user.js";
 import bodyParser from "body-parser";
 import productRouter from "./Routes/product.js";
 import cartRouter from "./Routes/cart.js";
+import { config } from "dotenv";
 
 const server = express();
 
 server.use(bodyParser.json());
+
 ///////***********************************************************************///////
 ///////***********************************************************************///////
 
@@ -22,13 +24,19 @@ server.use("/api/cart", cartRouter);
 ///////***********************************************************************///////
 ///////***********************************************************************///////
 
+// // // Starting of Set-Up of dotenv;
+
+config({ path: ".env" });
+
+// // // Ending of Set-Up of dotenv;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
 // // // Starting of connection MongoDB to ExpressJS through Mongoose;
 
 mongoose
-  .connect(
-    "mongodb+srv://shivas2710cool00_db_user:z4uksYjgi1tqMmtG@cluster0.hk9csmn.mongodb.net/",
-    { dbName: "MERN_EComm_ADMiN_Panel" }
-  )
+  .connect(process.env.MONGO_URI, { dbName: "MERN_EComm_ADMiN_Panel" })
   .then(() => console.log("MongoDB Connected Successfully...!"))
   .catch((err) => console.log(err));
 
@@ -37,7 +45,7 @@ mongoose
 ///////***********************************************************************///////
 ///////***********************************************************************///////
 
-const PORT = 8000;
+const PORT = process.env.PORT || 3000; // // Also, providing the fallback PORT number 3000;
 
 server.listen(PORT, () => {
   console.log(`Server is running at Port :-) ${PORT}`);
