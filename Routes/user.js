@@ -1,9 +1,11 @@
 import express from "express";
 import {
   getAllUserFunc,
+  getUserProfileFunc,
   userLoginFunc,
   userRegisterFunc,
 } from "../Controllers/user.js";
+import isAuthenticated from "../Middlewares/Auth.js";
 
 const router = express.Router();
 // // // @api description :- user signup/register
@@ -18,5 +20,9 @@ router.post("/login", userLoginFunc);
 // // // @api method :- get
 // // // @api endPoint :- /api/user/allusers
 router.get("/allusers", getAllUserFunc);
+// // // @api description :- getting user profile
+// // // @api method :- get
+// // // @api endPoint :- /api/user/profile
+router.get("/profile", isAuthenticated, getUserProfileFunc);
 
 export default router;

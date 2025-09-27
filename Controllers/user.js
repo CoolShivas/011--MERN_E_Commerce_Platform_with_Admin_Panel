@@ -123,12 +123,13 @@ export const getAllUserFunc = async (request, response) => {
   try {
     // const getUsers = await User.find(); // Finding and getting all users;
     const getUsers = await User.find().sort({ createdAt: -1 }); // Finding and getting all latest users;
-    console.log("Fetching all the users successfully => ", getUsers);
+    // // // Open the POSTMAN and select the GET request then enter URL as (http://localhost:8000/api/user/allusers) and hit send btn. You will get the result both on Terminal and POSTMAN;
+    console.log("Fetching all the users successfully => ", getUsers); // // Gettting data;
     response.json({
       message: "Fetching all the users successfully...!",
       success: true,
       data: getUsers,
-    });
+    }); // // Gettting data;
   } catch (error) {
     console.log("Error occurs in get all user => ", error.message);
     response.json({ message: error.message, success: false });
@@ -136,6 +137,22 @@ export const getAllUserFunc = async (request, response) => {
 };
 
 // // // Ending of getting All User function;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of getting User Profile function;
+
+export const getUserProfileFunc = async (request, response) => {
+  // // // Assigning the global user id;
+  let userId = request.confirmUserLoginToken;
+
+  // // // Open the POSTMAN and select the GET request then enter URL as (http://localhost:8000/api/user/profile) and hit send btn. You will get the result both on Terminal and POSTMAN;
+  console.log("Getting the user profile => ", userId); // // Gettting data;
+  response.json({ data: userId, success: true }); // // Gettting data;
+};
+
+// // // Ending of getting User Profile function;
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
