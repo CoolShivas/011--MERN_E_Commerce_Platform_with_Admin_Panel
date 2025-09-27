@@ -1,5 +1,6 @@
 import { User } from "../Models/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
@@ -84,12 +85,26 @@ export const userLoginFunc = async (request, response) => {
         success: false,
       });
     }
+
+    // // // Providing the login user a token by which we can identify by saving all the details on this token;
+    const token = jwt.sign({ userId: loginUser._id }, "!@#$%^&", {
+      expiresIn: "365d",
+    });
+
     // // // Open the POSTMAN and enter URL as (http://localhost:8000/api/user/login) fill the body data and hit send btn. You will get the result both on Terminal and POSTMAN;
-    console.log(`Welcome back ${loginUser.name}`, loginUser); // Getting data;
+    console.log(
+      `Welcome back ${loginUser.name}`,
+      "\n LoginUser => ",
+      loginUser,
+      "\n LoginToken => ",
+      token
+    ); // Getting data;
+    // // // \n means new line
     response.json({
       message: `Welcome back ${loginUser.name}`,
       success: true,
       data: loginUser,
+      token,
     }); // Getting data;
   } catch (error) {
     console.log("Error occur in login => ", error.message);
