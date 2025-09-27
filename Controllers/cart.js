@@ -9,8 +9,8 @@ export const addToCartProduct = async (req, res) => {
   // // // Getting all the things from the request body of POSTMAN;
   const { productId, title, price, quantity, imgSrc } = req.body;
 
-  // // // Giving the hard coded user id to add the items in specific user cart;
-  let userId = "68d50b0461b0791ae03d8e2c";
+  // // // Giving the global user id to add the items in specific user cart;
+  let userId = req.confirmUserLoginToken;
 
   // // // Finding the user by it's id token whether it's cart exits or not;
   let createUserCart = await Cart.findOne({ userId });
@@ -59,8 +59,8 @@ export const deductToCartProductQty = async (req, res) => {
   // // // Getting all the things from the request body of POSTMAN;
   const { productId, quantity } = req.body;
 
-  // // // Giving the hard coded user id to add the items in specific user cart;
-  let userId = "68d50b0461b0791ae03d8e2c";
+  // // // Giving the global user id to add the items in specific user cart;
+  let userId = req.confirmUserLoginToken;
 
   // // // Finding the user by it's id token whether it's cart exits or not;
   let decreaseUserCart = await Cart.findOne({ userId });
@@ -118,8 +118,8 @@ export const deductToCartProductQty = async (req, res) => {
 // // // Starting of Getting the products of specific user's cart;
 
 export const getUserCartProduct = async (req, res) => {
-  // // // Giving the hard coded user id to add the items in specific user cart;
-  let userId = "68d50b0461b0791ae03d8e2c";
+  // // // Giving the global user id to add the items in specific user cart;
+  let userId = req.confirmUserLoginToken;
 
   let cart = await Cart.findOne({ userId });
 
@@ -145,8 +145,8 @@ export const getUserCartProduct = async (req, res) => {
 export const removeProdFromCartById = async (req, res) => {
   // // // Getting the productId from the URL that the user going to paste in the POSTMAN;
   const productId = req.params.idOfProduct;
-  // // // Giving the hard coded user id to add the items in specific user cart;
-  let userId = "68d50b0461b0791ae03d8e2c";
+  // // // Giving the global user id to add the items in specific user cart;
+  let userId = req.confirmUserLoginToken;
 
   let cart = await Cart.findOne({ userId });
 
@@ -178,8 +178,8 @@ export const removeProdFromCartById = async (req, res) => {
 // // // Starting of Making the User Cart Empty;
 
 export const makingUserCartEmpty = async (req, res) => {
-  // // // Giving the hard coded user id to add the items in specific user cart;
-  let userId = "68d50b0461b0791ae03d8e2c";
+  // // // Giving the global user id to add the items in specific user cart;
+  let userId = req.confirmUserLoginToken;
 
   let cart = await Cart.findOne({ userId });
 
