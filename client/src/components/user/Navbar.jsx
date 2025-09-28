@@ -14,7 +14,8 @@ const Navbar = () => {
             <h3>Shiv - Store</h3>
           </Link>
           <div className="search_bar">
-            <input type="text" />
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Search Products...." />
           </div>
           <div className="right">
             <button className="btn btn-warning mx-2">cart</button>
