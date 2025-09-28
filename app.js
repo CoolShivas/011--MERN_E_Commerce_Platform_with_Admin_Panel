@@ -6,10 +6,26 @@ import productRouter from "./Routes/product.js";
 import cartRouter from "./Routes/cart.js";
 import { config } from "dotenv";
 import addressRouter from "./Routes/address.js";
+import cors from "cors";
 
 const server = express();
 
 server.use(bodyParser.json());
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of Set-Up of cors. It will help the axios/fetch method to connected with Back-End from Front-End;
+
+server.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+// // // Ending of Set-Up of cors. It will help the axios/fetch method to connected with Back-End from Front-End;
 
 ///////***********************************************************************///////
 ///////***********************************************************************///////
