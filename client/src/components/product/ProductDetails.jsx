@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import RelatedProducts from "./RelatedProducts";
 
 const ProductDetails = () => {
   // // // We are getting the Back-End product id i.e., (router.get("/:id", getProductByIdFunc)) that the user click on the product it get the product id from Back-End. Now, with the help of useParams we are grabbing it to render data on client;
@@ -71,6 +72,10 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+
+      <hr />
+      {/* Passing the Product Categories to Related Products page to show different products */}
+      <RelatedProducts pasCategory={getProID?.category} />
     </>
   );
 };
