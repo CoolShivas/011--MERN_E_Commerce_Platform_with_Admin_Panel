@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import AppContext from "./context/AppContext";
+import ShowProducts from "./components/product/ShowProducts";
 
 const App = () => {
-  const { data } = useContext(AppContext);
   return (
     <>
-      <center>Welcome to the Home Page.</center>
-      <h1>{data}</h1>
+      <ShowProducts></ShowProducts>
     </>
   );
 };

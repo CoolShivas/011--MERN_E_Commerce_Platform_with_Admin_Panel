@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AppContext from "./AppContext";
 import axios from "axios";
 
 const AppState = (props) => {
-  // // // Passing random data on client side for testing;
-  const data = "Getting the data from Context API.";
+  // // // Formation of useState to pass state and function data of fetchAllProducts;
+  const [pasApiProducts, setPasApiProducts] = useState([]);
 
   // // // Use of Back-End API (http://localhost:8000/api/product/allproduct)
   const URL = "http://localhost:8000/api";
@@ -19,13 +19,16 @@ const AppState = (props) => {
         withCredentials: true,
       });
       console.log(backendAPI); // // Getting data on Browser's Console from Back-End API;
+      setPasApiProducts(backendAPI.data.data);
     };
     // // // Calling the function here;
     fetchAllProducts();
   }, []);
 
   return (
-    <AppContext.Provider value={{ data }}>{props.children}</AppContext.Provider>
+    <AppContext.Provider value={{ pasApiProducts }}>
+      {props.children}
+    </AppContext.Provider>
   );
 };
 
