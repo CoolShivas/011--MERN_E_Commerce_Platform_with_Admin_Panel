@@ -1,10 +1,13 @@
 import ShowProducts from "./components/product/ShowProducts";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <>
-      <ShowProducts></ShowProducts>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ShowProducts />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
