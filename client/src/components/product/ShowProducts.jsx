@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 
 const ShowProducts = () => {
   const { pasApiProducts } = useContext(AppContext);
@@ -18,7 +19,10 @@ const ShowProducts = () => {
                   className="card bg-dark text-light text-center"
                   style={{ width: "18rem" }}
                 >
-                  <div className="d-flex justify-content-center align-items-center p-3">
+                  <Link
+                    to={`/product/${cur._id}`}
+                    className="d-flex justify-content-center align-items-center p-3"
+                  >
                     <img
                       src={cur.imgSrc}
                       alt="image not found"
@@ -30,7 +34,7 @@ const ShowProducts = () => {
                         border: "2px solid yellow",
                       }}
                     />
-                  </div>
+                  </Link>
                   <div className="card-body">
                     <h5 className="card-title">{cur.title}</h5>
                     <div className="my-3">
