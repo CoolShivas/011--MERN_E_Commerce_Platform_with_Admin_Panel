@@ -2,3 +2,12 @@ body {
   background-color: black;
   color: white;
 }
+
+.nav_bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(75, 65, 129);
+}
