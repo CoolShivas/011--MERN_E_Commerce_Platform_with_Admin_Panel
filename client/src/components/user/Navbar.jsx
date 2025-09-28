@@ -1,13 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
-      <div className="nav">
+      <div className="nav sticky-top">
         <div className="nav_bar">
-          <div className="left">
+          <Link
+            to={"/"}
+            className="left"
+            style={{ textDecoration: "none", color: "white" }}
+          >
             <h3>Shiv - Store</h3>
-          </div>
+          </Link>
           <div className="search_bar">
             <input type="text" />
           </div>

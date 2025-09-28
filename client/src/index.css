@@ -3,6 +3,10 @@ body {
   color: white;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .nav_bar {
   width: 100%;
   display: flex;
