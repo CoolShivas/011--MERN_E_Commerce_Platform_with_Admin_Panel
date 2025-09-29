@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handlerOnSearchSubmit = (event) => {
     event.preventDefault();
     console.log(searchTerm); // // Getting search input value on Browser's Console;
     setSearchTerm(" ");
+    // // // After entering the input value on search tag redirecting the user on SearchProducts.jsx page and getting that serach term on the Browser's URL also;
+    navigate(`/product/search/${searchTerm}`);
   };
 
   return (
@@ -19,7 +23,7 @@ const Navbar = () => {
             className="left"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <h3>Shiv - Store</h3>
+            <h3>Apna Store</h3>
           </Link>
           <form className="search_bar" onSubmit={handlerOnSearchSubmit}>
             <span className="material-symbols-outlined">search</span>
