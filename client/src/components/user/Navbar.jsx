@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handlerOnSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log(searchTerm); // // Getting search input value on Browser's Console;
+    setSearchTerm(" ");
+  };
+
   return (
     <>
       <div className="nav sticky-top">
@@ -13,10 +21,15 @@ const Navbar = () => {
           >
             <h3>Shiv - Store</h3>
           </Link>
-          <div className="search_bar">
-            <span class="material-symbols-outlined">search</span>
-            <input type="text" placeholder="Search Products...." />
-          </div>
+          <form className="search_bar" onSubmit={handlerOnSearchSubmit}>
+            <span className="material-symbols-outlined">search</span>
+            <input
+              type="text"
+              placeholder="Search Products...."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </form>
           <div className="right">
             <button className="btn btn-warning mx-2">cart</button>
             <button className="btn btn-warning mx-2">profile</button>
