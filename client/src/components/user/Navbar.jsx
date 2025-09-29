@@ -32,6 +32,7 @@ const Navbar = () => {
               placeholder="Search Products...."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              required
             />
           </form>
           <div className="right">
