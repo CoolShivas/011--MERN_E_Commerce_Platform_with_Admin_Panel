@@ -1,7 +1,10 @@
 import React, { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const { fetchingRegister } = useContext(AppContext);
 
   const initialData = {
@@ -25,7 +28,15 @@ const Register = () => {
     // // // Now, this Front-End data of signup form will be send to Back-End for storing in database;
     // // // And, Retrieving afterwards for Login purpose;
 
-    await fetchingRegister(formData.name, formData.email, formData.password); // // Passing this details to Context API fetchingRegister function that will connect to Back-End API database then;
+    const result = await fetchingRegister(
+      formData.name,
+      formData.email,
+      formData.password
+    ); // // Passing this details to Context API fetchingRegister function that will connect to Back-End API database then;
+
+    if (result.success) {
+      navigate("/login");
+    }
 
     setFormData(initialData); // // Clearing the input fields;
   };

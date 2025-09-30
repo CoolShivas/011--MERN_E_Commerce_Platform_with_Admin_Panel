@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppContext from "./AppContext";
 import axios from "axios";
+import { toast, Bounce } from "react-toastify";
 
 const AppState = (props) => {
   // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
@@ -46,8 +47,22 @@ const AppState = (props) => {
         withCredentials: true,
       }
     );
-    alert(backendAPI.data.message); // // Showing alet msg if user already registered;
+    // alert(backendAPI.data.message); // // Showing alet msg if user already registered;
+
+    toast.success(backendAPI.data.message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+
     console.log("Sended Sign-Up details to Backend => ", backendAPI); // // Getting data on Browser's Console from Back-End API;
+    return backendAPI.data;
   };
 
   // // //********* */ Ending of Fetching register api from Back-End //********* *// // //

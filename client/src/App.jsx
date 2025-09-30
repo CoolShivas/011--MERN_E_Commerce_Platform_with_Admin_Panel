@@ -4,16 +4,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import SearchProducts from "./components/product/SearchProducts";
 import Register from "./components/user/Register";
+import { ToastContainer } from "react-toastify";
+import Login from "./components/user/Login";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar></Navbar>
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<ShowProducts />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/product/search/:term" element={<SearchProducts />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
