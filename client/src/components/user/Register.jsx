@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import AppContext from "../../context/AppContext";
 
 const Register = () => {
+  const { fetchingRegister } = useContext(AppContext);
+
   const initialData = {
     name: "",
     email: "",
@@ -21,6 +24,8 @@ const Register = () => {
     console.log(formData); // // Getting the data on Browser's Console;
     // // // Now, this Front-End data of signup form will be send to Back-End for storing in database;
     // // // And, Retrieving afterwards for Login purpose;
+
+    await fetchingRegister(formData.name, formData.email, formData.password); // // Passing this details to Context API fetchingRegister function that will connect to Back-End API database then;
 
     setFormData(initialData); // // Clearing the input fields;
   };
