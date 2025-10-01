@@ -4,7 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
 const Navbar = () => {
-  const { pasApiProducts, setFIlteredProducts } = useContext(AppContext);
+  const { pasApiProducts, setFIlteredProducts, fetchingLogout } =
+    useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -63,7 +64,15 @@ const Navbar = () => {
             <Link to={"/register"}>
               <button className="btn btn-info mx-2">register</button>
             </Link>
-            <button className="btn btn-warning mx-2">logout</button>
+            <button
+              className="btn btn-danger mx-2"
+              onClick={() => {
+                fetchingLogout();
+                navigate("/");
+              }}
+            >
+              logout
+            </button>
           </div>
         </div>
         {location.pathname === "/" && (

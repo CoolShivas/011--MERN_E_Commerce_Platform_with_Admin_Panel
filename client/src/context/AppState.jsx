@@ -120,6 +120,30 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Ending of Fetching logout api from Back-End //********* *// // //
+
+  const fetchingLogout = async () => {
+    setIsLoginToken(" ");
+    setIsAuthenticate(false);
+    localStorage.removeItem("token");
+    toast.success("Logout Successfully...!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  };
+
+  // // //********* */ Ending of Fetching logout api from Back-End //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
     <AppContext.Provider
       value={{
@@ -131,6 +155,7 @@ const AppState = (props) => {
         isLoginToken,
         isAuthenticate,
         setIsAuthenticate,
+        fetchingLogout,
       }}
     >
       {props.children}
