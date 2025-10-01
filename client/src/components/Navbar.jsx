@@ -47,7 +47,18 @@ const Navbar = () => {
             <button className="btn btn-warning mx-2">logout</button>
           </div>
         </div>
-        <div className="sub_bar"></div>
+        <div className="sub_bar">
+          <div className="items">No Filter</div>
+          <div className="items">Mobiles</div>
+          <div className="items">Laptops</div>
+          <div className="items">Cameras</div>
+          <div className="items">Headphones</div>
+          <div className="items">15999</div>
+          <div className="items">25999</div>
+          <div className="items">49999</div>
+          <div className="items">69999</div>
+          <div className="items">89999</div>
+        </div>
       </div>
     </>
   );

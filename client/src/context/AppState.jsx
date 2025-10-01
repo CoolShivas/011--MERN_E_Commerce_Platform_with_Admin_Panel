@@ -10,6 +10,9 @@ const AppState = (props) => {
   // // // Use of Back-End API (http://localhost:8000/api/product/allproduct)
   const URL = "http://localhost:8000/api";
 
+  // // // Formation of filter state to filter out the products on the basis of categories such as(mobiles, laptops, camera and all). So, that why the second array is formed to hold the products and render on by filter method;
+  const [filteredProducts, setFIlteredProducts] = useState([]);
+
   // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
 
   useEffect(() => {
@@ -23,6 +26,7 @@ const AppState = (props) => {
       });
       // console.log(backendAPI); // // Getting data on Browser's Console from Back-End API;
       setPasApiProducts(backendAPI.data.data);
+      setFIlteredProducts(backendAPI.data.data);
     };
     // // // Calling the function here;
     fetchAllProducts();
@@ -109,7 +113,13 @@ const AppState = (props) => {
 
   return (
     <AppContext.Provider
-      value={{ pasApiProducts, fetchingRegister, fetchingLogin }}
+      value={{
+        pasApiProducts,
+        fetchingRegister,
+        fetchingLogin,
+        filteredProducts,
+        setFIlteredProducts,
+      }}
     >
       {props.children}
     </AppContext.Provider>
