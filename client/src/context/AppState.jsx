@@ -4,13 +4,13 @@ import axios from "axios";
 import { toast, Bounce } from "react-toastify";
 
 const AppState = (props) => {
-  // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
-
   // // // Formation of useState to pass state and function data of fetchAllProducts;
   const [pasApiProducts, setPasApiProducts] = useState([]);
 
   // // // Use of Back-End API (http://localhost:8000/api/product/allproduct)
   const URL = "http://localhost:8000/api";
+
+  // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
 
   useEffect(() => {
     // // // Formation of fetch product function;
@@ -70,8 +70,47 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Fetching login api from Back-End //********* *// // //
+
+  const fetchingLogin = async (email, password) => {
+    // // // This (name, email, password) comes from Front-End Sign-Up form when user fill the details;
+    const backendAPI = await axios.post(
+      `${URL}/user/login`,
+      { email, password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    // alert(backendAPI.data.message); // // Showing alet msg if user already registered;
+
+    toast.success(backendAPI.data.message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+
+    console.log("Sended Log-In details to Backend => ", backendAPI); // // Getting data on Browser's Console from Back-End API;
+    return backendAPI.data;
+  };
+
+  // // //********* */ Ending of Fetching login api from Back-End //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
-    <AppContext.Provider value={{ pasApiProducts, fetchingRegister }}>
+    <AppContext.Provider
+      value={{ pasApiProducts, fetchingRegister, fetchingLogin }}
+    >
       {props.children}
     </AppContext.Provider>
   );

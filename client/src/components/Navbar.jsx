@@ -38,7 +38,9 @@ const Navbar = () => {
           <div className="right">
             <button className="btn btn-warning mx-2">cart</button>
             <button className="btn btn-warning mx-2">profile</button>
-            <button className="btn btn-warning mx-2">login</button>
+            <Link to={"/login"}>
+              <button className="btn btn-light mx-2">login</button>
+            </Link>
             <Link to={"/register"}>
               <button className="btn btn-info mx-2">register</button>
             </Link>
