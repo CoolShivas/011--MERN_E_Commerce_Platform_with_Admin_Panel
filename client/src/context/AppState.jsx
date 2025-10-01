@@ -13,6 +13,10 @@ const AppState = (props) => {
   // // // Formation of filter state to filter out the products on the basis of categories such as(mobiles, laptops, camera and all). So, that why the second array is formed to hold the products and render on by filter method;
   const [filteredProducts, setFIlteredProducts] = useState([]);
 
+  // // // Formation of token state to save the Back-End API login token in this below state by which we will also authenticate the user also. By which we will not login the user again and again;
+  const [isLoginToken, setIsLoginToken] = useState([]);
+  const [isAuthenticate, setIsAuthenticate] = useState(false);
+
   // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const AppState = (props) => {
     };
     // // // Calling the function here;
     fetchAllProducts();
-  }, []);
+  }, [isLoginToken]); // // To render the particular login user cart and details related to that account;
 
   // // //********* */ Ending of Fetching all products from Back-End //********* *// // //
 
@@ -102,7 +106,12 @@ const AppState = (props) => {
       transition: Bounce,
     });
 
-    console.log("Sended Log-In details to Backend => ", backendAPI); // // Getting data on Browser's Console from Back-End API;
+    console.log("Sended Log-In details to Backend => ", backendAPI.data.token); // // Getting data on Browser's Console from Back-End API;
+
+    setIsLoginToken(backendAPI.data.token); // // If user login then storing it's token in state;
+    setIsAuthenticate(true); // // Making that user state true if login;
+    localStorage.setItem("token", backendAPI.data.token); // // Storing the token on local storage also;
+
     return backendAPI.data;
   };
 
@@ -119,6 +128,9 @@ const AppState = (props) => {
         fetchingLogin,
         filteredProducts,
         setFIlteredProducts,
+        isLoginToken,
+        isAuthenticate,
+        setIsAuthenticate,
       }}
     >
       {props.children}
