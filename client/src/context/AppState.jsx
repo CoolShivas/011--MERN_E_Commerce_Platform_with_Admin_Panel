@@ -31,6 +31,7 @@ const AppState = (props) => {
       // console.log(backendAPI); // // Getting data on Browser's Console from Back-End API;
       setPasApiProducts(backendAPI.data.data);
       setFIlteredProducts(backendAPI.data.data);
+      fetchingUserProfile(); // // Calling here, because whenever the user reload that time also fetch the user profile too;
     };
     // // // Calling the function here;
     fetchAllProducts();
@@ -137,7 +138,7 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
-  // // //********* */ Ending of Fetching logout api from Back-End //********* *// // //
+  // // //********* */ Starting of Fetching logout api from Back-End //********* *// // //
 
   const fetchingLogout = async () => {
     setIsLoginToken(" ");
@@ -161,6 +162,24 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Fetching user profile from Back-End API //********* *// // //
+
+  const fetchingUserProfile = async () => {
+    const backendAPI = await axios.get(`${URL}/user/profile`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authen: isLoginToken,
+      },
+      withCredentials: true,
+    });
+    console.log("Fetching User Profile => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+  };
+
+  // // //********* */ Ending of Fetching user profile from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
     <AppContext.Provider
       value={{
@@ -173,6 +192,7 @@ const AppState = (props) => {
         isAuthenticate,
         setIsAuthenticate,
         fetchingLogout,
+        fetchingUserProfile,
       }}
     >
       {props.children}
