@@ -3,12 +3,12 @@ import AppContext from "../../context/AppContext";
 
 const Profile = () => {
   const { profileUser } = useContext(AppContext);
-  console.log(profileUser);
+  console.log(profileUser?.data); // Getting data on Browser's Console;
   return (
     <>
       <div className="container text-center my-3">
-        <h1>Welcome , User Name </h1>
-        <h3> User Email ID </h3>
+        <h1>Welcome , {profileUser?.data?.name} </h1>
+        <h3> {profileUser?.data?.email} </h3>
         <h1>Total Order :- </h1>
       </div>
 
