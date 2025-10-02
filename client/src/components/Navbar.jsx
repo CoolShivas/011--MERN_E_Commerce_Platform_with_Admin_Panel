@@ -4,8 +4,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from "../context/AppContext";
 
 const Navbar = () => {
-  const { pasApiProducts, setFIlteredProducts, fetchingLogout } =
-    useContext(AppContext);
+  const {
+    pasApiProducts,
+    setFIlteredProducts,
+    fetchingLogout,
+    isAuthenticate,
+  } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -56,23 +60,35 @@ const Navbar = () => {
             />
           </form>
           <div className="right">
-            <button className="btn btn-warning mx-2">cart</button>
-            <button className="btn btn-warning mx-2">profile</button>
-            <Link to={"/login"}>
-              <button className="btn btn-light mx-2">login</button>
-            </Link>
-            <Link to={"/register"}>
-              <button className="btn btn-info mx-2">register</button>
-            </Link>
-            <button
-              className="btn btn-danger mx-2"
-              onClick={() => {
-                fetchingLogout();
-                navigate("/");
-              }}
-            >
-              logout
-            </button>
+            {/* If user is Authenticated then only going to display these Cart, Profile and Logout buttons */}
+            {isAuthenticate && (
+              <>
+                <button className="btn btn-warning mx-2">cart</button>
+                <button className="btn btn-warning mx-2">profile</button>
+                <button
+                  className="btn btn-danger mx-2"
+                  onClick={() => {
+                    fetchingLogout();
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+
+            {/* If user is not Authenticated then only going to display these Login and Register buttons */}
+
+            {!isAuthenticate && (
+              <>
+                <Link to={"/login"} className="btn btn-light mx-2">
+                  Login
+                </Link>
+                <Link to={"/register"} className="btn btn-info mx-2">
+                  Register
+                </Link>
+              </>
+            )}
           </div>
         </div>
         {location.pathname === "/" && (
