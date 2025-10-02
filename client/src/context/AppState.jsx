@@ -17,6 +17,9 @@ const AppState = (props) => {
   const [isLoginToken, setIsLoginToken] = useState([]);
   const [isAuthenticate, setIsAuthenticate] = useState(false);
 
+  // // // Formation of new state to store the data in this state and pass it to profile page to render details of user on profile page;
+  const [profileUser, setProfileUser] = useState();
+
   // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
 
   useEffect(() => {
@@ -173,6 +176,7 @@ const AppState = (props) => {
       withCredentials: true,
     });
     console.log("Fetching User Profile => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+    setProfileUser(backendAPI.data); // // Storing the data in this state and pass it to profile page to render details of user on profile page;
   };
 
   // // //********* */ Ending of Fetching user profile from Back-End API //********* *// // //
@@ -193,6 +197,7 @@ const AppState = (props) => {
         setIsAuthenticate,
         fetchingLogout,
         fetchingUserProfile,
+        profileUser,
       }}
     >
       {props.children}
