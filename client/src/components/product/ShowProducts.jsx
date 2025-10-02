@@ -3,7 +3,8 @@ import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
 
 const ShowProducts = () => {
-  const { pasApiProducts, filteredProducts } = useContext(AppContext);
+  const { pasApiProducts, filteredProducts, fetchingAddToCart } =
+    useContext(AppContext);
   // console.log(pasApiProducts[0].title); // // Getting data on Browser's Console;
   return (
     <>
@@ -41,7 +42,20 @@ const ShowProducts = () => {
                       <button className="btn btn-primary mx-3">
                         {cur?.price} {"₹"}
                       </button>
-                      <button className="btn btn-warning">Add To Cart</button>
+                      <button
+                        className="btn btn-warning"
+                        onClick={() => {
+                          fetchingAddToCart(
+                            cur._id,
+                            cur.title,
+                            cur.price,
+                            1,
+                            cur.imgSrc
+                          );
+                        }}
+                      >
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
                 </div>

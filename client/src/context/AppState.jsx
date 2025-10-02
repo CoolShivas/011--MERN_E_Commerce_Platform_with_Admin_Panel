@@ -184,6 +184,45 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Fetching user profile from Back-End API //********* *// // //
+
+  const fetchingAddToCart = async (
+    productId,
+    title,
+    price,
+    quantity,
+    imgSrc
+  ) => {
+    const backendAPI = await axios.post(
+      `${URL}/cart/addcart`,
+      { productId, title, price, quantity, imgSrc },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authen: isLoginToken,
+        },
+        withCredentials: true,
+      }
+    );
+    console.log("Fetching Add To Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+    toast.success(backendAPI.data.message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  };
+
+  // // //********* */ Ending of Fetching user profile from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
     <AppContext.Provider
       value={{
@@ -198,6 +237,7 @@ const AppState = (props) => {
         fetchingLogout,
         fetchingUserProfile,
         profileUser,
+        fetchingAddToCart,
       }}
     >
       {props.children}
