@@ -41,6 +41,23 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Getting the Local Storage token to render the same user after page refreshing instead of Login/Register again. //********* *// // //
+
+  useEffect(() => {
+    const getLocalStoreToken = localStorage.getItem("token");
+
+    // // // If getting token from the local storage then again making the state to setIsLoginToken and setIsAuthentiacte to true;
+    if (getLocalStoreToken) {
+      setIsLoginToken(getLocalStoreToken);
+      setIsAuthenticate(true);
+    }
+  }, []);
+
+  // // //********* */ Ending of Getting the Local Storage token to render the same user after page refreshing instead of Login/Register again. //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   // // //********* */ Starting of Fetching register api from Back-End //********* *// // //
 
   const fetchingRegister = async (name, email, password) => {
