@@ -13,10 +13,10 @@ const router = express.Router();
 // // // @api method :- post
 // // // @api endPoint :- /api/cart/addcart
 router.post("/addcart", isAuthenticated, addToCartProduct);
-// // // @api description :- decreasing the products of specific user's cart;
-// // // @api method :- delete
+// // // @api description :- decreasing the products quantity of specific user's cart;
+// // // @api method :- post
 // // // @api endPoint :- /api/cart/dedcart
-router.delete("/dedcart", isAuthenticated, deductToCartProductQty);
+router.post("/dedcart", isAuthenticated, deductToCartProductQty);
 // // // @api description :- getting the products of specific user's cart;
 // // // @api method :- get
 // // // @api endPoint :- /api/cart/usercart

@@ -4,7 +4,7 @@ import { FaMinus } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
 
 const Cart = () => {
-  const { userCart } = useContext(AppContext);
+  const { userCart, fetchingDecreaseCartQty } = useContext(AppContext);
   // console.log(userCart); // // Getting data on Browser's Console;
 
   // // // Formation of new state to store the data in this state and pass it to cart page to render details of user's cart page;
@@ -72,7 +72,12 @@ const Cart = () => {
               <h4>Qty :- {product.quantity}</h4>
             </div>
             <div className="cart_action">
-              <button className="btn btn-warning mx-3">
+              <button
+                className="btn btn-warning mx-3"
+                onClick={() => {
+                  fetchingDecreaseCartQty(product.productId, 1);
+                }}
+              >
                 <FaMinus />
               </button>
               <button
