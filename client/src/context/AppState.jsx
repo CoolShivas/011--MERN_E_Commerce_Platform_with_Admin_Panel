@@ -286,6 +286,39 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Fetching Remove from Cart from Back-End API //********* *// // //
+
+  const fetchingRemoveFromCart = async (productId) => {
+    const backendAPI = await axios.delete(
+      `${URL}/cart/removecart/${productId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authen: isLoginToken,
+        },
+        withCredentials: true,
+      }
+    );
+    console.log("Fetching Remove from Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+    setReloadCart(!reloadCart); // // Whenever the item added to cart make the state false on re-render of useEffect it will be true or show the badge numnber of cart;
+    toast.success(backendAPI.data.message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  };
+
+  // // //********* */ Ending of Fetching Remove from Cart from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
     <AppContext.Provider
       value={{
@@ -303,6 +336,7 @@ const AppState = (props) => {
         fetchingAddToCart,
         userCart,
         fetchingDecreaseCartQty,
+        fetchingRemoveFromCart,
       }}
     >
       {props.children}

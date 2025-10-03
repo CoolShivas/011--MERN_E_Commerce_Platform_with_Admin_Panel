@@ -4,8 +4,12 @@ import { FaMinus } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
 
 const Cart = () => {
-  const { userCart, fetchingDecreaseCartQty, fetchingAddToCart } =
-    useContext(AppContext);
+  const {
+    userCart,
+    fetchingDecreaseCartQty,
+    fetchingAddToCart,
+    fetchingRemoveFromCart,
+  } = useContext(AppContext);
   // console.log(userCart); // // Getting data on Browser's Console;
 
   // // // Formation of new state to store the data in this state and pass it to cart page to render details of user's cart page;
@@ -99,6 +103,9 @@ const Cart = () => {
               <button
                 className="btn btn-danger mx-3"
                 style={{ fontWeight: "bold" }}
+                onClick={() => {
+                  fetchingRemoveFromCart(product?.productId);
+                }}
               >
                 Remove
               </button>
