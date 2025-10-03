@@ -21,7 +21,9 @@ const AppState = (props) => {
   const [profileUser, setProfileUser] = useState();
 
   // // // Formation of new state to store the user's cart items in this state and pass it to profile page to render details of user on profile page;
-  const [userCart, setUserCart] = useState();
+  const [userCart, setUserCart] = useState([]);
+  // // // Formation of new state to reflect the user's cart items badge number when the useEffect re-render;
+  const [reloadCart, setReloadCart] = useState(false);
 
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
@@ -45,7 +47,7 @@ const AppState = (props) => {
     // // // Calling the function here;
     fetchAllProducts();
     fetchingUserCart(); // // Whenver the user refresh also the get/show their user cart items;
-  }, [isLoginToken]); // // To render the particular login user cart and details related to that account;
+  }, [isLoginToken, reloadCart]); // // To re-render the particular login user cart and details related to that account;
 
   // // //********* */ Ending of Fetching all products from Back-End //********* *// // //
 
@@ -212,6 +214,7 @@ const AppState = (props) => {
       }
     );
     console.log("Fetching Add To Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+    setReloadCart(!reloadCart); // // Whenever the item added to cart make the state false on re-render of useEffect it will be true or show the badge numnber of cart;
     toast.success(backendAPI.data.message, {
       position: "top-center",
       autoClose: 5000,
@@ -264,6 +267,7 @@ const AppState = (props) => {
         fetchingUserProfile,
         profileUser,
         fetchingAddToCart,
+        userCart,
       }}
     >
       {props.children}

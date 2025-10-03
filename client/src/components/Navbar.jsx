@@ -10,7 +10,10 @@ const Navbar = () => {
     setFIlteredProducts,
     fetchingLogout,
     isAuthenticate,
+    userCart,
   } = useContext(AppContext);
+  // console.log(userCart?.cart?.items?.length);
+  console.log(userCart?.items?.length);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,7 +73,7 @@ const Navbar = () => {
                 >
                   <FaCartShopping size={20} />
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    99+
+                    {userCart?.items?.length}
                     <span className="visually-hidden">unread messages</span>
                   </span>
                 </button>
