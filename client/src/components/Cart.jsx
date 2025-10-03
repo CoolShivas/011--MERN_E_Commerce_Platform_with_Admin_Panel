@@ -1,13 +1,48 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 import { FaMinus } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
 
 const Cart = () => {
   const { userCart } = useContext(AppContext);
-  //   console.log(userCart); // // Getting data on Browser's Console;
+  // console.log(userCart); // // Getting data on Browser's Console;
+
+  // // // Formation of new state to store the data in this state and pass it to cart page to render details of user's cart page;
+  const [cartQty, setCartQty] = useState(0);
+  const [cartPrice, setCartPrice] = useState(0);
+
+  // // // Formation of useEffect to render the details of total cart qty and price with and side effect;
+  useEffect(() => {
+    let qtyses = 0;
+    let priceses = 0;
+    if (userCart?.items) {
+      for (let i = 0; i < userCart?.items?.length; i++) {
+        qtyses = qtyses + userCart?.items[i].quantity;
+        priceses = priceses + userCart?.items[i].price;
+      }
+    }
+    setCartQty(qtyses);
+    setCartPrice(priceses);
+    // console.log(qtyses, priceses); // // Getting data on Browser's Console;
+  }, [userCart]);
+
   return (
     <>
+      <div className="my-5 text-center">
+        <button
+          className="btn btn-info mx-3"
+          style={{ fontWeight: "bold", fontSize: "1.2rem" }}
+        >
+          Total Quantity :- {cartQty}
+        </button>
+        <button
+          className="btn btn-warning mx-3"
+          style={{ fontWeight: "bold", fontSize: "1.2rem" }}
+        >
+          Total Price :- {cartPrice}
+        </button>
+      </div>
+
       {userCart?.items?.map((product) => (
         <div
           key={product._id}
