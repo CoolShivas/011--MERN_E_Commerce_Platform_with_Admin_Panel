@@ -4,7 +4,8 @@ import { FaMinus } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
 
 const Cart = () => {
-  const { userCart, fetchingDecreaseCartQty } = useContext(AppContext);
+  const { userCart, fetchingDecreaseCartQty, fetchingAddToCart } =
+    useContext(AppContext);
   // console.log(userCart); // // Getting data on Browser's Console;
 
   // // // Formation of new state to store the data in this state and pass it to cart page to render details of user's cart page;
@@ -23,7 +24,7 @@ const Cart = () => {
     }
     setCartQty(qtyses);
     setCartPrice(priceses);
-    // console.log(qtyses, priceses); // // Getting data on Browser's Console;
+    console.log(qtyses, priceses); // // Getting data on Browser's Console;
   }, [userCart]);
 
   return (
@@ -83,6 +84,15 @@ const Cart = () => {
               <button
                 className="btn btn-info mx-3"
                 style={{ fontWeight: "bold" }}
+                onClick={() => {
+                  fetchingAddToCart(
+                    product?.productId,
+                    product.title,
+                    product.price / product.quantity, // // Taking out the original price of the product by divinding quantity with price;
+                    1,
+                    product.imgSrc
+                  );
+                }}
               >
                 <IoMdAdd />
               </button>
