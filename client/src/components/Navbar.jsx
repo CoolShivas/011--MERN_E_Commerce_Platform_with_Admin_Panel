@@ -67,7 +67,8 @@ const Navbar = () => {
             {/* If user is Authenticated then only going to display these Cart, Profile and Logout buttons */}
             {isAuthenticate && (
               <>
-                <button
+                <Link
+                  to={"/cart"}
                   type="button"
                   className="btn btn-primary position-relative mx-3"
                 >
@@ -76,7 +77,7 @@ const Navbar = () => {
                     {userCart?.items?.length}
                     <span className="visually-hidden">unread messages</span>
                   </span>
-                </button>
+                </Link>
 
                 <Link to={"/profile"} className="btn btn-success mx-2">
                   Profile
