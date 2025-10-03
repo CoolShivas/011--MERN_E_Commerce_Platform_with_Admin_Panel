@@ -38,6 +38,7 @@ const AppState = (props) => {
     };
     // // // Calling the function here;
     fetchAllProducts();
+    fetchingUserCart(); // // Whenver the user refresh also the get/show their user cart items;
   }, [isLoginToken]); // // To render the particular login user cart and details related to that account;
 
   // // //********* */ Ending of Fetching all products from Back-End //********* *// // //
@@ -219,6 +220,24 @@ const AppState = (props) => {
   };
 
   // // //********* */ Ending of Fetching user profile from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
+  // // //********* */ Starting of Fetching user cart from Back-End API //********* *// // //
+
+  const fetchingUserCart = async () => {
+    const backendAPI = await axios.get(`${URL}/cart/usercart`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authen: isLoginToken,
+      },
+      withCredentials: true,
+    });
+    console.log("Fetching User Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+  };
+
+  // // //********* */ Ending of Fetching user cart from Back-End API //********* *// // //
 
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
