@@ -20,6 +20,12 @@ const AppState = (props) => {
   // // // Formation of new state to store the data in this state and pass it to profile page to render details of user on profile page;
   const [profileUser, setProfileUser] = useState();
 
+  // // // Formation of new state to store the user's cart items in this state and pass it to profile page to render details of user on profile page;
+  const [userCart, setUserCart] = useState();
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   // // //********* */ Starting of Fetching all products from Back-End //********* *// // //
 
   useEffect(() => {
@@ -234,7 +240,8 @@ const AppState = (props) => {
       },
       withCredentials: true,
     });
-    console.log("Fetching User Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
+    console.log("Fetching User Cart => ", backendAPI.data.cart); // // Getting all the details related to user on Browser's Console;
+    setUserCart(backendAPI.data.cart);
   };
 
   // // //********* */ Ending of Fetching user cart from Back-End API //********* *// // //

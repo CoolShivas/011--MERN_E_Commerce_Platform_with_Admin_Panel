@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from "../context/AppContext";
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
   const {
@@ -63,7 +64,17 @@ const Navbar = () => {
             {/* If user is Authenticated then only going to display these Cart, Profile and Logout buttons */}
             {isAuthenticate && (
               <>
-                <button className="btn btn-warning mx-2">cart</button>
+                <button
+                  type="button"
+                  className="btn btn-primary position-relative mx-3"
+                >
+                  <FaCartShopping size={20} />
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99+
+                    <span className="visually-hidden">unread messages</span>
+                  </span>
+                </button>
+
                 <Link to={"/profile"} className="btn btn-success mx-2">
                   Profile
                 </Link>
