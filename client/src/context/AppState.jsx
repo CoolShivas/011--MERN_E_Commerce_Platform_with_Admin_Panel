@@ -47,6 +47,7 @@ const AppState = (props) => {
     // // // Calling the function here;
     fetchAllProducts();
     fetchingUserCart(); // // Whenver the user refresh also the get/show their user cart items;
+    fetchingGetUserShipAddress(); // // Whenver the user refresh also the get user address;
   }, [isLoginToken, reloadCart]); // // To re-render the particular login user cart and details related to that account;
 
   // // //********* */ Ending of Fetching all products from Back-End //********* *// // //
@@ -397,6 +398,26 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Fetching Get User Latest Address from Back-End API //********* *// // //
+
+  // // // This ( fullName, address, city, state, country, pincode, phoneNumber) comes from Front-End Shipping Address page form when user fill the details;
+  const fetchingGetUserShipAddress = async () => {
+    const backendAPI = await axios.get(`${URL}/shipping/getship`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authen: isLoginToken,
+      },
+      withCredentials: true,
+    });
+
+    console.log("Getting Shipping Address from Backend => ", backendAPI); // // Getting data on Browser's Console from Back-End API;
+  };
+
+  // // //********* */ Ending of Fetching Get User Latest Address from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
     <AppContext.Provider
       value={{
@@ -417,6 +438,7 @@ const AppState = (props) => {
         fetchingRemoveFromCart,
         fetchingCartClearAll,
         fetchingShippingAddress,
+        fetchingGetUserShipAddress,
       }}
     >
       {props.children}
