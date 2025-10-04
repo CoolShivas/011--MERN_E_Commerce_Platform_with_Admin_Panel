@@ -153,6 +153,9 @@ const Cart = () => {
             <button
               className="btn btn-warning mx-3"
               style={{ fontWeight: "bold" }}
+              onClick={() => {
+                navigate("/shipping");
+              }}
             >
               Check Out
             </button>
