@@ -121,20 +121,33 @@ const Cart = () => {
       ))}
       {/* Ending of Rendering of items details with Qty increase/decrease btns */}
 
-      {/* Starting of Displaying of Check Out and Clear all btns */}
-      <div className="container text-center">
-        <button className="btn btn-warning mx-3" style={{ fontWeight: "bold" }}>
-          Check Out
-        </button>
-        <button
-          className="btn btn-danger mx-3"
-          style={{ fontWeight: "bold" }}
-          onClick={fetchingCartClearAll}
-        >
-          Clear All
-        </button>
-      </div>
-      {/* Ending of Displaying of Check Out and Clear all btns */}
+      {/* Starting of Hidding the Check Out and Clear All btns if there were no items in the User Cart */}
+      {userCart?.items?.length > 0 && (
+        <>
+          {/* Starting of Displaying of Check Out and Clear all btns */}
+          <div className="container text-center my-3">
+            <button
+              className="btn btn-warning mx-3"
+              style={{ fontWeight: "bold" }}
+            >
+              Check Out
+            </button>
+            <button
+              className="btn btn-danger mx-3"
+              style={{ fontWeight: "bold" }}
+              onClick={() => {
+                if (confirm("Are you sure, you want to clear the cart !")) {
+                  fetchingCartClearAll();
+                }
+              }}
+            >
+              Clear All
+            </button>
+          </div>
+          {/* Ending of Displaying of Check Out and Clear all btns */}
+        </>
+      )}
+      {/* Ending of Hidding the Check Out and Clear All btns if there were no items in the User Cart */}
     </>
   );
 };
