@@ -88,7 +88,7 @@ const AppState = (props) => {
     // alert(backendAPI.data.message); // // Showing alet msg if user already registered;
 
     toast.success(backendAPI.data.message, {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -125,7 +125,7 @@ const AppState = (props) => {
     // alert(backendAPI.data.message); // // Showing alet msg if user already registered;
 
     toast.success(backendAPI.data.message, {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -157,7 +157,7 @@ const AppState = (props) => {
     setIsAuthenticate(false);
     localStorage.removeItem("token");
     toast.success("Logout Successfully...!", {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -216,7 +216,7 @@ const AppState = (props) => {
     console.log("Fetching Add To Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
     setReloadCart(!reloadCart); // // Whenever the item added to cart make the state false on re-render of useEffect it will be true or show the badge numnber of cart;
     toast.success(backendAPI.data.message, {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -269,7 +269,7 @@ const AppState = (props) => {
     console.log("Fetching Decrease Cart Qty => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
     setReloadCart(!reloadCart); // // Whenever the item added to cart make the state false on re-render of useEffect it will be true or show the badge numnber of cart;
     toast.success(backendAPI.data.message, {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -302,7 +302,7 @@ const AppState = (props) => {
     console.log("Fetching Remove from Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
     setReloadCart(!reloadCart); // // Whenever the item added to cart make the state false on re-render of useEffect it will be true or show the badge numnber of cart;
     toast.success(backendAPI.data.message, {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -332,7 +332,7 @@ const AppState = (props) => {
     console.log("Fetching Clear All Cart => ", backendAPI.data); // // Getting all the details related to user on Browser's Console;
     setReloadCart(!reloadCart); // // Whenever the item added to cart make the state false on re-render of useEffect it will be true or show the badge numnber of cart;
     toast.success(backendAPI.data.message, {
-      position: "top-center",
+      position: "bottom-left",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
