@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Address = () => {
   const navigate = useNavigate();
 
-  const { fetchingShippingAddress } = useContext(AppContext);
+  const { fetchingShippingAddress, userAddress } = useContext(AppContext);
 
   const initialData = {
     fullName: "",
@@ -165,11 +165,19 @@ const Address = () => {
             </button>
           </div>
         </form>
-        <div className="d-grid col-6 mx-auto my-3">
-          <button className="btn btn-warning" style={{ fontWeight: "bold" }}>
-            Use Old Address
-          </button>
-        </div>
+        {/* Starting of userAddress state that have the backend saved address of user that he/she previously used */}
+        {userAddress && (
+          <div className="d-grid col-6 mx-auto my-3">
+            <button
+              className="btn btn-warning"
+              style={{ fontWeight: "bold" }}
+              onClick={() => navigate("/checkout")}
+            >
+              Use Old Address
+            </button>
+          </div>
+        )}
+        {/* Ending of userAddress state that have the backend saved address of user that he/she previously used */}
       </div>
     </>
   );

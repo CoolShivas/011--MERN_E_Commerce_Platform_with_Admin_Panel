@@ -25,6 +25,9 @@ const AppState = (props) => {
   // // // Formation of new state to reflect the user's cart items badge number when the useEffect re-render;
   const [reloadCart, setReloadCart] = useState(false);
 
+  // // // Formation of new state to storing the backend API get address data on this state;
+  const [userAddress, setUserAddress] = useState("");
+
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
@@ -410,7 +413,9 @@ const AppState = (props) => {
       withCredentials: true,
     });
 
-    console.log("Getting Shipping Address from Backend => ", backendAPI); // // Getting data on Browser's Console from Back-End API;
+    console.log("Getting Shipping Address from Backend => ", backendAPI.data); // // Getting data on Browser's Console from Back-End API;
+
+    setUserAddress(backendAPI.data); // // Storing the user address on this state;
   };
 
   // // //********* */ Ending of Fetching Get User Latest Address from Back-End API //********* *// // //
@@ -438,7 +443,7 @@ const AppState = (props) => {
         fetchingRemoveFromCart,
         fetchingCartClearAll,
         fetchingShippingAddress,
-        fetchingGetUserShipAddress,
+        userAddress,
       }}
     >
       {props.children}
