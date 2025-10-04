@@ -104,7 +104,9 @@ const Cart = () => {
                 className="btn btn-danger mx-3"
                 style={{ fontWeight: "bold" }}
                 onClick={() => {
-                  fetchingRemoveFromCart(product?.productId);
+                  if (confirm("Are you sure, you want to remove this item.")) {
+                    fetchingRemoveFromCart(product?.productId);
+                  }
                 }}
               >
                 Remove
