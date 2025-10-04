@@ -33,6 +33,7 @@ const Cart = () => {
 
   return (
     <>
+      {/* Starting of Displaying Total Quantity and Price of over-all items in the User Cart */}
       <div className="my-5 text-center">
         <button
           className="btn btn-info mx-3"
@@ -47,7 +48,9 @@ const Cart = () => {
           Total Price :- {cartPrice}
         </button>
       </div>
+      {/* Ending of Displaying Total Quantity and Price of over-all items in the User Cart */}
 
+      {/* Starting of Rendering of items details with Qty increase/decrease btns */}
       {userCart?.items?.map((product) => (
         <div
           key={product._id}
@@ -115,6 +118,18 @@ const Cart = () => {
           </div>
         </div>
       ))}
+      {/* Ending of Rendering of items details with Qty increase/decrease btns */}
+
+      {/* Starting of Displaying of Check Out and Clear all btns */}
+      <div className="container text-center">
+        <button className="btn btn-warning mx-3" style={{ fontWeight: "bold" }}>
+          Check Out
+        </button>
+        <button className="btn btn-danger mx-3" style={{ fontWeight: "bold" }}>
+          Clear All
+        </button>
+      </div>
+      {/* Ending of Displaying of Check Out and Clear all btns */}
     </>
   );
 };
