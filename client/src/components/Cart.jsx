@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 import { FaMinus } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   const {
     userCart,
     fetchingDecreaseCartQty,
@@ -34,22 +37,43 @@ const Cart = () => {
 
   return (
     <>
-      {/* Starting of Displaying Total Quantity and Price of over-all items in the User Cart */}
-      <div className="my-5 text-center">
-        <button
-          className="btn btn-info mx-3"
-          style={{ fontWeight: "bold", fontSize: "1.2rem" }}
-        >
-          Total Quantity :- {cartQty}
-        </button>
-        <button
-          className="btn btn-warning mx-3"
-          style={{ fontWeight: "bold", fontSize: "1.2rem" }}
-        >
-          Total Price :- {cartPrice}
-        </button>
-      </div>
-      {/* Ending of Displaying Total Quantity and Price of over-all items in the User Cart */}
+      {/* Starting of Hidding the Total Quantity and Total Price btns and showing Continue Shopping btn. If there were no items in the User Cart */}
+      {userCart?.items?.length === 0 ? (
+        <>
+          <div className="text-center my-5">
+            <button
+              className="btn btn-success mx-3 p-2"
+              style={{ fontWeight: "bold", fontSize: "1.2rem" }}
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Continue Shopping....
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          {/* Starting of Displaying Total Quantity and Price of over-all items in the User Cart */}
+          <div className="my-5 text-center">
+            <button
+              className="btn btn-info mx-3"
+              style={{ fontWeight: "bold", fontSize: "1.2rem" }}
+            >
+              Total Quantity :- {cartQty}
+            </button>
+            <button
+              className="btn btn-warning mx-3"
+              style={{ fontWeight: "bold", fontSize: "1.2rem" }}
+            >
+              Total Price :- {cartPrice}
+            </button>
+          </div>
+          {/* Ending of Displaying Total Quantity and Price of over-all items in the User Cart */}
+        </>
+      )}
+
+      {/* Ending of Hidding the Total Quantity and Total Price btns and showing Continue Shopping btn. If there were no items in the User Cart */}
 
       {/* Starting of Rendering of items details with Qty increase/decrease btns */}
       {userCart?.items?.map((product) => (
