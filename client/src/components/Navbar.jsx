@@ -73,10 +73,14 @@ const Navbar = () => {
                   className="btn btn-primary position-relative mx-3"
                 >
                   <FaCartShopping size={20} />
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {userCart?.items?.length}
-                    <span className="visually-hidden">unread messages</span>
-                  </span>
+                  {/* Starting of Hidding the Cart Badge if it is at zero */}
+                  {userCart?.items?.length > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {userCart?.items?.length}
+                      <span className="visually-hidden">unread messages</span>
+                    </span>
+                  )}
+                  {/* Ending of Hidding the Cart Badge if it is at zero */}
                 </Link>
 
                 <Link to={"/profile"} className="btn btn-success mx-2">
