@@ -349,6 +349,54 @@ const AppState = (props) => {
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
+  // // //********* */ Starting of Fetching Add Address from Back-End API //********* *// // //
+
+  // // // This ( fullName, address, city, state, country, pincode, phoneNumber) comes from Front-End Shipping Address page form when user fill the details;
+  const fetchingShippingAddress = async (
+    fullName,
+    address,
+    city,
+    state,
+    country,
+    pincode,
+    phoneNumber
+  ) => {
+    const backendAPI = await axios.post(
+      `${URL}/shipping/addship`,
+      { fullName, address, city, state, country, pincode, phoneNumber },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authen: isLoginToken,
+        },
+        withCredentials: true,
+      }
+    );
+
+    toast.success(backendAPI.data.message, {
+      position: "bottom-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+
+    setReloadCart(!reloadCart);
+
+    console.log("Sended Shipping Address details to Backend => ", backendAPI); // // Getting data on Browser's Console from Back-End API;
+
+    return backendAPI.data;
+  };
+
+  // // //********* */ Ending of Fetching Add Address from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
   return (
     <AppContext.Provider
       value={{
@@ -368,6 +416,7 @@ const AppState = (props) => {
         fetchingDecreaseCartQty,
         fetchingRemoveFromCart,
         fetchingCartClearAll,
+        fetchingShippingAddress,
       }}
     >
       {props.children}

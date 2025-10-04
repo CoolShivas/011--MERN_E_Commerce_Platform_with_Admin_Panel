@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../context/AppContext";
 
 const Address = () => {
+  const { fetchingShippingAddress } = useContext(AppContext);
+
   const initialData = {
     fullName: "",
     address: "",
@@ -17,9 +20,20 @@ const Address = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handlerOnFormSubmit = (e) => {
+  const handlerOnFormSubmit = async (e) => {
     e.preventDefault();
     console.log(formData); // // Getting data on Browser's Console;
+
+    await fetchingShippingAddress(
+      formData.fullName,
+      formData.address,
+      formData.city,
+      formData.state,
+      formData.country,
+      formData.pincode,
+      formData.phoneNumber
+    ); // // Passing this details to Context API fetchingShippingAddress function that will connect to Back-End API database then;
+
     setFormData(initialData); // // Clearing the fields;
   };
 
