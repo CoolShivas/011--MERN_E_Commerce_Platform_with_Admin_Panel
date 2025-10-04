@@ -1,7 +1,10 @@
 import { useContext, useState } from "react";
 import AppContext from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Address = () => {
+  const navigate = useNavigate();
+
   const { fetchingShippingAddress } = useContext(AppContext);
 
   const initialData = {
@@ -24,7 +27,7 @@ const Address = () => {
     e.preventDefault();
     console.log(formData); // // Getting data on Browser's Console;
 
-    await fetchingShippingAddress(
+    const result = await fetchingShippingAddress(
       formData.fullName,
       formData.address,
       formData.city,
@@ -33,6 +36,10 @@ const Address = () => {
       formData.pincode,
       formData.phoneNumber
     ); // // Passing this details to Context API fetchingShippingAddress function that will connect to Back-End API database then;
+
+    if (result.success) {
+      navigate("/checkout"); // // Redirecting to Check-Out Page after filling the address;
+    }
 
     setFormData(initialData); // // Clearing the fields;
   };
