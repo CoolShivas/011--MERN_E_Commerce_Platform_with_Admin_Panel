@@ -9,6 +9,7 @@ const Cart = () => {
     fetchingDecreaseCartQty,
     fetchingAddToCart,
     fetchingRemoveFromCart,
+    fetchingCartClearAll,
   } = useContext(AppContext);
   // console.log(userCart); // // Getting data on Browser's Console;
 
@@ -125,7 +126,11 @@ const Cart = () => {
         <button className="btn btn-warning mx-3" style={{ fontWeight: "bold" }}>
           Check Out
         </button>
-        <button className="btn btn-danger mx-3" style={{ fontWeight: "bold" }}>
+        <button
+          className="btn btn-danger mx-3"
+          style={{ fontWeight: "bold" }}
+          onClick={fetchingCartClearAll}
+        >
           Clear All
         </button>
       </div>
