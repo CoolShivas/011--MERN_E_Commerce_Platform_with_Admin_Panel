@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import AppContext from "../context/AppContext";
+import TableProduct from "./TableProduct";
 
 const Checkout = () => {
   const { userAddress } = useContext(AppContext);
@@ -27,6 +28,10 @@ const Checkout = () => {
           </thead>
           <tbody className="bg-dark">
             <tr>
+              <td className="bg-dark text-light">
+                <TableProduct />
+              </td>
+
               <td className="bg-dark text-light">
                 <ul style={{ fontWeight: "bold" }}>
                   <li>Name : {shortAdres?.fullName}</li>
