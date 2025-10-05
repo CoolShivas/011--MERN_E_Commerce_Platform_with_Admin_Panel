@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import AppContext from "../context/AppContext";
 
-const CheckOut = () => {
+const Checkout = () => {
+  const { userAddress } = useContext(AppContext);
+
+  console.log("Printing User Address => ", userAddress.data); // // Getting data on Browser's Console;
+
+  const shortAdres = userAddress.data;
+
   return (
     <>
       <div className="container  my-3">
@@ -20,15 +27,14 @@ const CheckOut = () => {
           </thead>
           <tbody className="bg-dark">
             <tr>
-              <td className="bg-dark text-light"></td>
               <td className="bg-dark text-light">
                 <ul style={{ fontWeight: "bold" }}>
-                  <li>Name :</li>
-                  <li>Phone : </li>
-                  <li>Country : </li>
-                  <li>State : </li>
-                  <li>PinCode : </li>
-                  <li>Near By : </li>
+                  <li>Name : {shortAdres?.fullName}</li>
+                  <li>Phone : {shortAdres?.phoneNumber}</li>
+                  <li>Country : {shortAdres?.country}</li>
+                  <li>State : {shortAdres?.state}</li>
+                  <li>PinCode : {shortAdres?.pincode}</li>
+                  <li>Near By : {shortAdres?.address}</li>
                 </ul>
               </td>
             </tr>
@@ -48,4 +54,4 @@ const CheckOut = () => {
   );
 };
 
-export default CheckOut;
+export default Checkout;
