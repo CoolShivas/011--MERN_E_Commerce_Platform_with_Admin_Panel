@@ -444,6 +444,7 @@ const AppState = (props) => {
         fetchingCartClearAll,
         fetchingShippingAddress,
         userAddress,
+        URL,
       }}
     >
       {props.children}
