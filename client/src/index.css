@@ -63,3 +63,8 @@ body::-webkit-scrollbar {
 .sub_bar .items:hover {
   background-color: black;
 }
+
+td {
+  vertical-align: middle;
+  cursor: pointer;
+}

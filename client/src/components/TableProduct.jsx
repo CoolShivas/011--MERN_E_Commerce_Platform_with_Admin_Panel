@@ -70,7 +70,6 @@ const TableProduct = () => {
               <td className="bg-dark text-light">
                 <span
                   className="material-symbols-outlined"
-                  style={{ cursor: "pointer" }}
                   onClick={() =>
                     fetchingAddToCart(
                       product?.productId,
@@ -87,7 +86,6 @@ const TableProduct = () => {
               <td className="bg-dark text-light">
                 <span
                   className="material-symbols-outlined"
-                  style={{ cursor: "pointer" }}
                   onClick={() => fetchingDecreaseCartQty(product?.productId, 1)}
                 >
                   do_not_disturb_on
@@ -96,7 +94,6 @@ const TableProduct = () => {
               <td className="bg-dark text-light">
                 <span
                   className="material-symbols-outlined"
-                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     if (confirm("Are you sure, want remove from cart")) {
                       fetchingRemoveFromCart(product?.productId);
