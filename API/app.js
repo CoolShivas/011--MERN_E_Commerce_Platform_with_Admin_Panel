@@ -7,6 +7,7 @@ import cartRouter from "./Routes/cart.js";
 import { config } from "dotenv";
 import addressRouter from "./Routes/address.js";
 import cors from "cors";
+import paymentRouter from "./Routes/payment.js";
 
 const server = express();
 
@@ -36,6 +37,7 @@ server.use("/api/user", userRouter);
 server.use("/api/product", productRouter);
 server.use("/api/cart", cartRouter);
 server.use("/api/shipping", addressRouter);
+server.use("/api/payment", paymentRouter);
 
 // // // Ending of middleware use method to connect with User Routes endpoint;
 
