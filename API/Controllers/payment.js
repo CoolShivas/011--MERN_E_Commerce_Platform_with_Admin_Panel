@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import Razorpay from "razorpay";
+import { Payment } from "../Models/Payment.js";
 
 // // //  Load environment variables
 dotenv.config();
@@ -15,7 +16,11 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_SECRET,
 });
 
-// // //  Checkout controller
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of checkoutFunc for the order summary for payment shippment;
+
 export const checkoutFunc = async (req, res) => {
   // // //  The below things going to be provided by user from POSTMAN i.e, from Front-End;
   const { amount, cartItems, userShipping, userId } = req.body;
@@ -50,3 +55,42 @@ export const checkoutFunc = async (req, res) => {
     });
   }
 };
+
+// // // Ending of checkoutFunc for the order summary for payment shippment;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
+
+// // // Starting of verifyPaymentFunc for the payment confirmation;
+
+export const verifyPaymentFunc = async (req, res) => {
+  // // //  The below things going to be provided by user from POSTMAN i.e, from Front-End;
+  const {
+    orderId,
+    paymentId,
+    signature,
+    amount,
+    orderItems,
+    userId,
+    userShipping,
+  } = req.body;
+
+  // // // Saving all the details to DB as per Payment Schema;
+  let orderConfirm = await Payment.create({
+    orderId,
+    paymentId,
+    signature,
+    amount,
+    orderItems,
+    userId,
+    userShipping,
+    payStatus: "paid",
+  });
+
+  res.json({ message: "payment successfull...", success: true, orderConfirm });
+};
+
+// // // Ending of verifyPaymentFunc for the payment confirmation;
+
+///////***********************************************************************///////
+///////***********************************************************************///////
