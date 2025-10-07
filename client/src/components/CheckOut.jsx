@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 import TableProduct from "./TableProduct";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const { userAddress, userCart, profileUser, URL } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const { userAddress, userCart, profileUser, URL, fetchingCartClearAll } =
+    useContext(AppContext);
 
   console.log("Printing User Address => ", userAddress.data); // // Getting data on Browser's Console;
 
@@ -34,6 +38,7 @@ const Checkout = () => {
     try {
       const orderResponse = await axios.post(`${URL}/payment/checkout`, {
         amount: cartPrice,
+        quantity: cartQty,
         cartItems: userCart?.items,
         userShipping: userAddress,
         userId: profileUser._id,
@@ -49,10 +54,29 @@ const Checkout = () => {
         name: "Apna Store",
         description: "Apna Store",
         order_id: orderId,
-        handler: function (response) {
-          alert("payment_id => " + response.razorpay_payment_id);
-          alert("order_id => " + response.razorpay_order_id);
-          alert("payment_sign => " + response.razorpay_signature);
+        handler: async function (response) {
+          // // // These details will sended to Back-End Controllers/payment.js function verifyPaymentFunc;
+          const paymentData = {
+            orderId: response.razorpay_payment_id,
+            paymentId: response.razorpay_order_id,
+            signature: response.razorpay_signature,
+            amount: orderAmount,
+            orderItems: userCart?.items,
+            userId: profileUser._id,
+            userShipping: userAddress,
+          };
+
+          const apies = await axios.post(
+            `${URL}/payment/verify-payment`,
+            paymentData
+          );
+
+          console.log("RazorPay Response => ", apies);
+
+          if (apies.data.success) {
+            fetchingCartClearAll();
+            navigate("/orderconfirmation");
+          }
         },
         prefill: {
           name: "Apna Store",
