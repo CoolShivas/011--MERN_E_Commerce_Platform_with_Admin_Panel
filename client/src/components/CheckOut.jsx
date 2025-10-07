@@ -50,9 +50,9 @@ const Checkout = () => {
         description: "Apna Store",
         order_id: orderId,
         handler: function (response) {
-          alert(response.razorpay_payment_id);
-          alert(response.razorpay_order_id);
-          alert(response.razorpay_signature);
+          alert("payment_id => " + response.razorpay_payment_id);
+          alert("order_id => " + response.razorpay_order_id);
+          alert("payment_sign => " + response.razorpay_signature);
         },
         prefill: {
           name: "Apna Store",
