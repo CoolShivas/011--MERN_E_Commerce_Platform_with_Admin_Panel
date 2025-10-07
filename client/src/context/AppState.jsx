@@ -51,6 +51,7 @@ const AppState = (props) => {
     fetchAllProducts();
     fetchingUserCart(); // // Whenver the user refresh also the get/show their user cart items;
     fetchingGetUserShipAddress(); // // Whenver the user refresh also the get user address;
+    userSpecificOrder();
   }, [isLoginToken, reloadCart]); // // To re-render the particular login user cart and details related to that account;
 
   // // //********* */ Ending of Fetching all products from Back-End //********* *// // //
@@ -419,6 +420,24 @@ const AppState = (props) => {
   };
 
   // // //********* */ Ending of Fetching Get User Latest Address from Back-End API //********* *// // //
+
+  // // // ////********************************************************************************* */
+  // // // ////********************************************************************************* */
+
+  // // //********* */ Starting of Fetching Get specific User Order from Back-End API //********* *// // //
+
+  const userSpecificOrder = async () => {
+    const backendAPI = await axios.get(`${URL}/payment/userorder`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authen: isLoginToken,
+      },
+      withCredentials: true,
+    });
+    console.log("Specific User Order => ", backendAPI.data); // // Getting data on Browser's Console;
+  };
+
+  // // //********* */ Ending of Fetching Get specific User Order from Back-End API //********* *// // //
 
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
