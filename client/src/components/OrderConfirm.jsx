@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
+import ShowOrderProduct from "./ShowOrderProduct";
 
 const OrderConfirm = () => {
   const { userOrder } = useContext(AppContext);
@@ -40,7 +41,7 @@ const OrderConfirm = () => {
             <tr>
               <td className="bg-dark text-light">
                 {/* <TableProduct cart={cart} /> */}
-                new table comes here
+                <ShowOrderProduct itemsOrder={latestOrder?.orderItems} />
               </td>
               <td className="bg-dark text-light">
                 <ul style={{ fontWeight: "bold" }}>
