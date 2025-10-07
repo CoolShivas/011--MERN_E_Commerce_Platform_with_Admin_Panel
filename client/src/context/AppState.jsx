@@ -28,6 +28,9 @@ const AppState = (props) => {
   // // // Formation of new state to storing the backend API get address data on this state;
   const [userAddress, setUserAddress] = useState("");
 
+  // // // Formation of new state to storing the backend API get specific user order data on this state;
+  const [userOrder, setUserOrder] = useState([]);
+
   // // // ////********************************************************************************* */
   // // // ////********************************************************************************* */
 
@@ -435,6 +438,7 @@ const AppState = (props) => {
       withCredentials: true,
     });
     console.log("Specific User Order => ", backendAPI.data); // // Getting data on Browser's Console;
+    setUserOrder(backendAPI.data); // // Storing specific user order in this state;
   };
 
   // // //********* */ Ending of Fetching Get specific User Order from Back-End API //********* *// // //
@@ -464,6 +468,7 @@ const AppState = (props) => {
         fetchingShippingAddress,
         userAddress,
         URL,
+        userOrder,
       }}
     >
       {props.children}
