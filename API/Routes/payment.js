@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  allUsersOrderFunc,
   checkoutFunc,
   userSpecificOrderFunc,
   verifyPaymentFunc,
@@ -15,9 +16,13 @@ router.post("/checkout", checkoutFunc);
 // // // @api method :- post
 // // // @api endPoint :- /api/payment/verify-payment
 router.post("/verify-payment", verifyPaymentFunc);
-// // // @api description :- getting the specific user's order verification to DB;
+// // // @api description :- getting the specific user's order;
 // // // @api method :- get
 // // // @api endPoint :- /api/payment/userorder
 router.get("/userorder", isAuthenticated, userSpecificOrderFunc);
+// // // @api description :- getting the all users order;
+// // // @api method :- get
+// // // @api endPoint :- /api/payment/orders
+router.get("/orders", allUsersOrderFunc);
 
 export default router;
