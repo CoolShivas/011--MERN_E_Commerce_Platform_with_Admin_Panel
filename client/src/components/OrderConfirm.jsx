@@ -1,10 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 
 const OrderConfirm = () => {
   const { userOrder } = useContext(AppContext);
 
-  console.log("Printing Order Confirmation => ", userOrder);
+  const [latestOrder, setLatestOrder] = useState({});
+
+  console.log("Printing Order Confirmation => ", userOrder); // // Getting data on Browser's Console;
+
+  useEffect(() => {
+    if (userOrder) {
+      setLatestOrder(userOrder[0]);
+    }
+  }, [userOrder]); // // Whenever the user changes it will render that user;
+
+  console.log("Latest Order => ", latestOrder); // // Getting data on Browser's Console;
 
   return (
     <>
@@ -18,27 +28,39 @@ const OrderConfirm = () => {
           <thead className="bg-dark">
             <tr>
               <th scope="col" className="bg-dark text-light text-center">
-                OrderItems
+                Order - Items
               </th>
 
               <th scope="col" className="bg-dark text-light text-center">
-                OrderDetails & ShippingAddress
+                Order-Details & Shipping-Address
               </th>
             </tr>
           </thead>
           <tbody className="bg-dark">
             <tr>
               <td className="bg-dark text-light">
+                {/* <TableProduct cart={cart} /> */}
+                new table comes here
+              </td>
+              <td className="bg-dark text-light">
                 <ul style={{ fontWeight: "bold" }}>
-                  <li>OrderId : </li>
-                  <li>PaymentId : </li>
-                  <li>PaymentStatus : </li>
-                  <li>Name : </li>
-                  <li>Phone : </li>
-                  <li>Country : </li>
-                  <li>State : </li>
-                  <li>PinCode : </li>
-                  <li>Near By : </li>
+                  <li>OrderId :- {latestOrder?.orderId} </li>
+                  <li>PaymentId :- {latestOrder?.paymentId} </li>
+                  <li>PaymentStatus :- {latestOrder?.payStatus} </li>
+                  <li>Name :- {latestOrder?.userShipping?.data?.fullName} </li>
+                  <li>
+                    Phone :- {latestOrder?.userShipping?.data?.phoneNumber}{" "}
+                  </li>
+                  <li>
+                    Country :- {latestOrder?.userShipping?.data?.country}{" "}
+                  </li>
+                  <li>State :- {latestOrder?.userShipping?.data?.state} </li>
+                  <li>
+                    PinCode :- {latestOrder?.userShipping?.data?.pincode}{" "}
+                  </li>
+                  <li>
+                    Near By :- {latestOrder?.userShipping?.data?.address}{" "}
+                  </li>
                 </ul>
               </td>
             </tr>
