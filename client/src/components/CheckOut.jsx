@@ -39,6 +39,34 @@ const Checkout = () => {
         userId: profileUser._id,
       });
       console.log("OrderResponse ProceedToPay => ", orderResponse); // // Gettting data on Browser's Console;
+
+      const { orderId, amount: orderAmount } = orderResponse.data;
+
+      const options = {
+        key: "rzp_test_RQCS3C4A0z2dPL",
+        amount: orderAmount * 100, // amount is in currency sub-units;
+        currency: "INR",
+        name: "Apna Store",
+        description: "Apna Store",
+        order_id: orderId,
+        handler: function (response) {
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature);
+        },
+        prefill: {
+          name: "Apna Store",
+          email: "apnastore@gmail.com",
+          contact: "9009397438",
+        },
+        notes: { address: "Karnel Gunj" },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
     } catch (error) {
       console.log(error.message);
     }
