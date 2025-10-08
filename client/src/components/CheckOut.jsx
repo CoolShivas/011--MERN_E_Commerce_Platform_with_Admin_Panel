@@ -5,6 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID;
+
   const navigate = useNavigate();
 
   const { userAddress, userCart, profileUser, URL, fetchingCartClearAll } =
@@ -48,7 +50,7 @@ const Checkout = () => {
       const { orderId, amount: orderAmount } = orderResponse.data;
 
       const options = {
-        key: "rzp_test_RQCS3C4A0z2dPL",
+        key: razorpayKey,
         amount: orderAmount * 100, // amount is in currency sub-units;
         currency: "INR",
         name: "Apna Store",
